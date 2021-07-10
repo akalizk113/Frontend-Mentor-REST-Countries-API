@@ -209,6 +209,7 @@ body {
   height: 160px;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+  object-fit: cover;
 }
 .container-1440 > .row .col-3 .country__info {
   display: flex;
