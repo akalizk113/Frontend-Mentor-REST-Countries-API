@@ -1,6 +1,4 @@
-$light-mode-text: hsl(200, 15%, 8%);
-$datk-mode-text: hsl(0, 0%, 100%);
-
+@import 'variables';
 // common
 
 * {
@@ -18,18 +16,23 @@ body {
 }
 
 .container-1440 {
-   max-width: 1440px !important;
-   margin: 0 auto !important;
+   max-width: 1440px;
+   margin: 0 auto;
 }
 
-// mixin 
-
-@mixin boxStyle {
-   box-shadow: 1px 1px 4px #f2f2f2;
-   border-radius: 5px;
+.btn {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 40px;
+   border: none ;
+   outline: none;
+   background-color: #fff;
+   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1) !important;
+   &:hover {
+      background-color: #ccc;
+   }
 }
-
-
 
 // Header
 
@@ -41,6 +44,8 @@ body {
    padding: 0 80px;
    display: flex;
    align-items: center;
+   z-index: 9999999;
+   transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 
    .heading {
       font-size: 24px;
@@ -56,6 +61,8 @@ body {
       font-weight: 600;
       display: flex;
       align-items: center;
+      box-shadow: none !important;
+      
 
       .dark-mode-icon {
          display: flex;
@@ -70,6 +77,7 @@ body {
 .container-1440 {
    background-color: #fafafa;
    padding-top: 46px;
+   transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 
    .header {
       height: 58px;
@@ -84,7 +92,7 @@ body {
          align-items: center;
          background-color: #fff;
          @include boxStyle;
-
+         transition: all 0.15s;
          &-icon {
             margin-right: 24px;
             font-size: 20px;
@@ -95,6 +103,8 @@ body {
             outline: none;
             width: 100%;
             padding-right: 32px;
+            background-color: transparent;
+            transition: all 0.15s;
          }
 
       }
@@ -105,9 +115,8 @@ body {
          padding: 0 24px;
          background-color: #fff;
          position: relative;
-
          @include boxStyle;
-
+         transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
          &__title {
             display: flex;
             height: 100%;
@@ -157,7 +166,7 @@ body {
             padding-left: 0;
             overflow: hidden;
             @include boxStyle;
-
+            transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 
             &:hover {
                display: block;
@@ -166,7 +175,7 @@ body {
             &__item {
                list-style: none;
                padding: 8px 24px;
-
+               transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
                &:first-child {
                   padding-top: 14px;
                }
@@ -188,7 +197,8 @@ body {
 
 // body-main-container
 .container-1440 {
-   .row {
+   margin-top: 2px;
+   & > .row {
       padding: 0 42px;
 
       .col-3 {
@@ -215,17 +225,16 @@ body {
                border-bottom-right-radius: 6px;
                box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
                font-weight: 600;
-
+               font-size: 14px;
+               transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
                .name {
                   font-size: 20px;
-                  font-weight: 600;
+                  font-weight: 700;
                   margin-top: 24px;
                   margin-bottom: 16px;
                }
 
-               .population-desc .population-info,
-               .region-desc .region-info,
-               .captial-desc .captial-info {
+               .info {
                   font-weight: 400;
                }
             }
@@ -236,18 +245,76 @@ body {
 
 
 .detail-container {
-   padding: 0 80px;
+   padding:  80px;
+   background-color: #fff;
+   
+   // display: none;
    .btn.back-btn {
-      display: flex;
-      align-items: center;
-      width: 136px;
-      height: 40px;
-      border: none;
-      background-color: #fff;
-      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+      width: 136px; 
       .back-btn-icon {
          display: flex;
          align-items: center;
+         margin-right: 10px;
+      }
+      
+   }
+
+   .country {
+      display: flex;
+      margin-top: 80px;
+
+      &__img {
+         width: 560px;
+         height: 400px;
+      }
+      &__info {
+         margin-left: 120px;
+         flex: 1;
+         display: flex;
+         flex-direction: column;
+         &-name {
+            font-weight: 700;
+            margin-bottom: 32px;
+         }
+         & > .row {
+            width: 100%;
+         }
+
+         .info-content {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+            font-size: 16px;
+
+            .desc {
+               font-weight: 600;
+               margin-bottom: 12px;
+               .info {
+                  font-weight: 400;
+                  color: #3f3f3f;
+               }
+            }
+
+         }
+
+         .border-country {
+            display: flex;
+            align-items: center;
+            margin-top: auto;
+            margin-bottom: 36px;
+            font-weight: 600;
+            &-desc {
+               margin-right: 8px;
+            }
+            &-btn {
+               height: 28px;
+               margin: 0 8px;
+            }
+         }
       }
    }
 }
+
+
+
+@import 'dark-mode';

@@ -1,0 +1,65 @@
+@import 'variables';
+
+.dark-mode {
+   color: $dark-mode-text ;
+   .btn {
+      color: $dark-mode-text;
+   }
+
+   #header {
+      background-color: $elmc;
+
+   }
+   .container-1440 {
+      margin-top: 0;
+      background-color: $bgc;
+      .header__search {
+         input[name="search"] {
+            color: $dark-mode-text;
+
+            &::placeholder {
+               Color: rgba(255, 255, 255, 0.3);
+            }
+         }
+      }
+      .header__search,
+      .filter-menu {
+         background-color: $elmc;
+         @include boxStyle(#1a2632);
+         .filter-nav {
+            background-color: $elmc;
+            @include boxStyle(#1a2632);
+            &__item {
+               &:hover {
+                  background-color: rgba(26, 38, 50, 0.7);
+                  
+               }
+            }
+         }
+      }
+
+      .country__info {
+         background-color: $elmc !important;
+      }
+   }
+
+   .detail-container {
+      margin-top: 0;
+      min-height: 100vh;
+      .btn {
+         background-color: $elmc;
+         box-shadow: 1px 1px 2px #1a2632, -1px -1px 2px #1a2632 !important;
+         &:hover{
+            background-color: rgba(26, 38, 50, 0.7);
+         }
+      }
+
+      .country__info {
+         background-color: transparent !important;
+      }
+      .info {
+         color: rgba(255, 255, 255, 0.6) !important;
+      }
+   }
+  
+}

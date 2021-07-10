@@ -1,0 +1,13 @@
+$light-mode-text: hsl(200, 15%, 8%);
+$datk-mode-text: hsl(0, 0%, 100%);
+$bgc: hsl(207, 26%, 17%);
+$elmc: hsl(209, 23%, 22%);
+$dark-mode-text: rgba(255, 255, 255, 0.8);
+
+
+// mixin 
+
+@mixin boxStyle ($color: #f2f2f2) {
+   box-shadow: 1px 1px 4px $color;
+   border-radius: 5px;
+}
