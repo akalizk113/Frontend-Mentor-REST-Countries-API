@@ -95,8 +95,26 @@ body {
   align-items: center;
   margin-left: auto;
   font-size: 18px;
+  transition: transform 0.3s;
+}
+.container-1440 .header .filter-menu__title:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  height: 30px;
+  width: 100%;
+  background-color: transparent;
+}
+.container-1440 .header .filter-menu__title:hover {
+  cursor: pointer;
+}
+.container-1440 .header .filter-menu__title:hover + .filter-nav {
+  cursor: pointer;
+  display: block !important;
 }
 .container-1440 .header .filter-menu .filter-nav {
+  display: none;
   position: absolute;
   top: calc(100% + 5px);
   left: 0;
@@ -106,6 +124,9 @@ body {
   overflow: hidden;
   box-shadow: 1px 1px 4px #f2f2f2;
   border-radius: 5px;
+}
+.container-1440 .header .filter-menu .filter-nav:hover {
+  display: block;
 }
 .container-1440 .header .filter-menu .filter-nav__item {
   list-style: none;
@@ -120,6 +141,60 @@ body {
 .container-1440 .header .filter-menu .filter-nav__item:hover {
   background-color: #ccc;
   cursor: pointer;
+}
+
+.container-1440 .row {
+  padding: 0 42px;
+}
+.container-1440 .row .col-3 .country {
+  padding: 0 38px;
+  margin-bottom: 76px;
+}
+.container-1440 .row .col-3 .country__ensign {
+  width: 264px;
+  height: 160px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.container-1440 .row .col-3 .country__info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6;
+  background-color: #fff;
+  padding-left: 24px;
+  padding-bottom: 40px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+}
+.container-1440 .row .col-3 .country__info .name {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+.container-1440 .row .col-3 .country__info .population-desc .population-info,
+.container-1440 .row .col-3 .country__info .region-desc .region-info,
+.container-1440 .row .col-3 .country__info .captial-desc .captial-info {
+  font-weight: 400;
+}
+
+.detail-container {
+  padding: 0 80px;
+}
+.detail-container .btn.back-btn {
+  display: flex;
+  align-items: center;
+  width: 136px;
+  height: 40px;
+  border: none;
+  background-color: #fff;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+}
+.detail-container .btn.back-btn .back-btn-icon {
+  display: flex;
+  align-items: center;
 }
 
 /*# sourceMappingURL=style.css.map */

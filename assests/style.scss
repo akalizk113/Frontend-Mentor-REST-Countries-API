@@ -41,15 +41,17 @@ body {
    padding: 0 80px;
    display: flex;
    align-items: center;
+
    .heading {
       font-size: 24px;
-      
+
    }
+
    .dark-mode-btn {
       margin-left: auto;
       background-color: transparent;
-      border: none ;
-      outline: none ;
+      border: none;
+      outline: none;
       box-shadow: none;
       font-weight: 600;
       display: flex;
@@ -63,15 +65,17 @@ body {
    }
 }
 
-// Body
+// Body-header
 
 .container-1440 {
    background-color: #fafafa;
    padding-top: 46px;
+
    .header {
       height: 58px;
       margin: 0 80px 46px;
       display: flex;
+
       &__search {
          height: 100%;
          width: 480px;
@@ -92,7 +96,7 @@ body {
             width: 100%;
             padding-right: 32px;
          }
-         
+
       }
 
       .filter-menu {
@@ -103,23 +107,48 @@ body {
          position: relative;
 
          @include boxStyle;
-         
+
          &__title {
             display: flex;
             height: 100%;
             width: 100%;
             align-items: center;
             font-weight: 600;
+
             .nav-icon {
                display: flex;
                align-items: center;
                margin-left: auto;
                font-size: 18px;
-               
+               transition: transform 0.3s;
+            }
+
+            &:before {
+               content: "";
+               position: absolute;
+               top: 100%;
+               left: 0;
+               height: 30px;
+               width: 100%;
+               background-color: transparent;
+
+            }
+
+            &:hover {
+               cursor: pointer;
+               // .nav-icon {
+               //    transform: rotateZ(180deg);
+               // }
+            }
+
+            &:hover+.filter-nav {
+               cursor: pointer;
+               display: block !important;
             }
          }
+
          .filter-nav {
-            // display: none;
+            display: none;
             position: absolute;
             top: calc(100% + 5px);
             left: 0;
@@ -130,6 +159,10 @@ body {
             @include boxStyle;
 
 
+            &:hover {
+               display: block;
+            }
+
             &__item {
                list-style: none;
                padding: 8px 24px;
@@ -137,6 +170,7 @@ body {
                &:first-child {
                   padding-top: 14px;
                }
+
                &:last-child {
                   padding-bottom: 14px;
                }
@@ -146,8 +180,74 @@ body {
                   cursor: pointer;
                }
             }
-            
+
          }
+      }
+   }
+}
+
+// body-main-container
+.container-1440 {
+   .row {
+      padding: 0 42px;
+
+      .col-3 {
+         .country {
+            padding: 0 38px;
+            margin-bottom: 76px;
+
+            &__ensign {
+               width: 264px;
+               height: 160px;
+               border-top-left-radius: 6px;
+               border-top-right-radius: 6px;
+
+            }
+
+            &__info {
+               display: flex;
+               flex-direction: column;
+               line-height: 1.6;
+               background-color: #fff;
+               padding-left: 24px;
+               padding-bottom: 40px;
+               border-bottom-left-radius: 6px;
+               border-bottom-right-radius: 6px;
+               box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+               font-weight: 600;
+
+               .name {
+                  font-size: 20px;
+                  font-weight: 600;
+                  margin-top: 24px;
+                  margin-bottom: 16px;
+               }
+
+               .population-desc .population-info,
+               .region-desc .region-info,
+               .captial-desc .captial-info {
+                  font-weight: 400;
+               }
+            }
+         }
+      }
+   }
+}
+
+
+.detail-container {
+   padding: 0 80px;
+   .btn.back-btn {
+      display: flex;
+      align-items: center;
+      width: 136px;
+      height: 40px;
+      border: none;
+      background-color: #fff;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+      .back-btn-icon {
+         display: flex;
+         align-items: center;
       }
    }
 }
