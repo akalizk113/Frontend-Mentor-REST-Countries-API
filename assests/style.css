@@ -1,3 +1,19 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes sideUp {
+  from {
+    transform: translateY(30px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
 * {
   padding: 0;
   margin: 0;
@@ -56,10 +72,21 @@ body {
   align-items: center;
   box-shadow: none !important;
 }
+#header .dark-mode-btn .light-mode-desc {
+  display: none;
+}
 #header .dark-mode-btn .dark-mode-icon {
   display: flex;
   align-items: center;
   margin-right: 6px;
+  animation: fadeIn 0.5s, sideUp 0.5s;
+}
+#header .dark-mode-btn .light-mode-icon {
+  align-items: center;
+  margin-right: 6px;
+  Color: #fff;
+  display: none;
+  animation: fadeIn 0.5s, sideUp 0.5s;
 }
 
 .container-1440 {
@@ -269,6 +296,22 @@ body {
   margin: 0 8px;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes sideUp {
+  from {
+    transform: translateY(30px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
 .dark-mode {
   color: rgba(255, 255, 255, 0.8);
 }
@@ -277,6 +320,18 @@ body {
 }
 .dark-mode #header {
   background-color: #2b3945;
+}
+.dark-mode #header .dark-mode-btn .dark-mode-icon {
+  display: none;
+}
+.dark-mode #header .dark-mode-btn .light-mode-icon {
+  display: flex;
+}
+.dark-mode #header .dark-mode-btn .dark-mode-desc {
+  display: none;
+}
+.dark-mode #header .dark-mode-btn .light-mode-desc {
+  display: block;
 }
 .dark-mode .container-1440 {
   margin-top: 0;

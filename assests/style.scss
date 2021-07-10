@@ -62,12 +62,26 @@ body {
       display: flex;
       align-items: center;
       box-shadow: none !important;
-      
+      .dark-mode-desc {
+
+      }
+      .light-mode-desc  {
+         display: none;
+      }
 
       .dark-mode-icon {
          display: flex;
          align-items: center;
          margin-right: 6px;
+         animation: fadeIn 0.5s, sideUp 0.5s;
+      }
+      .light-mode-icon {
+         // display: flex;
+         align-items: center;
+         margin-right: 6px;
+         Color: #fff;
+         display: none;
+         animation: fadeIn 0.5s, sideUp 0.5s;
       }
    }
 }

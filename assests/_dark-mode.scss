@@ -8,7 +8,20 @@
 
    #header {
       background-color: $elmc;
-
+      .dark-mode-btn {
+         .dark-mode-icon {
+            display: none;
+         }
+         .light-mode-icon {
+            display: flex;
+         }
+         .dark-mode-desc {
+            display: none;
+         }
+         .light-mode-desc  {
+            display: block;
+         }
+      }
    }
    .container-1440 {
       margin-top: 0;
