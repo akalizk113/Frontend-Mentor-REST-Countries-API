@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="./assests/bootstrap.min.css">
+   <link rel="stylesheet" href="./assests/style.css">
+   <link rel="shortcut icon" href="https://restcountries.eu/img/favicon.ico">
+   <title>RS Countries</title>
+</head>
+
+<body>
+   <header id="header">
+      <h1 class="heading">Where in the world?</h1>
+      <button class="btn dark-mode-btn">
+         <div class="dark-mode-icon d-none">
+            <ion-icon name="moon"></ion-icon>
+         </div>
+         <div class="dark-mode-icon">
+            <ion-icon name="moon-outline"></ion-icon>  
+         </div>
+         Dark Mode
+      </button>
+   </header>
+   
+   <div class="container-1440">
+      <header class="header">
+         <section class="header__search">
+            <label for="search-input" class="header__search-icon">
+               <ion-icon name="search-outline"></ion-icon>
+            </label>
+            <input  id="search-input" type="text" name="search" placeholder="Search for a country..."> 
+         </section>
+
+         <nav class="filter-menu">
+            <span class="filter-menu__title">
+               Filter by Region
+               <div class="nav-icon">
+                  <ion-icon name="chevron-down-outline"></ion-icon>
+               </div>
+            </span>
+            <ul class="filter-nav">
+               <li class="filter-nav__item">Africa</li>
+               <li class="filter-nav__item">America</li>
+               <li class="filter-nav__item">Asia</li>
+               <li class="filter-nav__item">Europe</li>
+               <li class="filter-nav__item">Oceania</li>
+            </ul>
+            
+         </nav>
+
+      </header>
+   </div>
+   
+
+   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+   <script src="./assests/main.js"></script>
+</body>
+
+</html>
