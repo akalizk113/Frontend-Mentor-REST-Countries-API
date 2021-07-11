@@ -321,6 +321,7 @@ body {
 
          .border-country {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             margin-top: auto;
             margin-bottom: 36px;
@@ -331,6 +332,7 @@ body {
             &-btn {
                height: 28px;
                margin: 0 8px;
+               margin: 8px;
             }
          }
       }

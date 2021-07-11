@@ -60,22 +60,22 @@ const renderDetails = async api => {
       return await fetch(api)
          .then(response => response.json())
    }
-   const renderBorders = borderCountriesCode => {
-      Promise.all(borderCountriesCode.map( async value => await getCountryInfo(`${apiUrl}alpha/${value}`)))
+   const renderBorders = borderCountriesCode => {  
+      Promise.all(borderCountriesCode.map(async value => await getCountryInfo(`${apiUrl}alpha/${value}`)))
          .then(data => data.forEach(value => {
             const newCountry = document.createElement('span');
-            newCountry.innerHTML = `<button class="btn border-country-btn">France</button>`;
+            newCountry.innerHTML = `<button onclick="renderDetails(\`${apiUrl}name/${value.name}/?fullText=true\`)" class="btn border-country-btn">${value.name}</button>`;
             $('.border-country').append(newCountry);
          }))
    }
+   
 
    await fetch(api)
       .then(response => response.json())
       .then(data => {
-         console.log(data);
-         const htmls = data.map(value => {
-            console.log(renderBorders(value.borders));
-            return `
+         const value = data[0];
+         console.log(value);
+         detailCountry.innerHTML =  `
             <img src="${value.flag}" alt="" class="country__img">
             <section class="country__info">
                <h2 class="country__info-name">${value.name}</h2>
@@ -128,12 +128,9 @@ const renderDetails = async api => {
                </div>
             </section>
             `
-         })
-         return htmls.join('');
+            renderBorders(value.borders)
       })
-      .then(html => {
-         detailCountry.innerHTML = html;
-      })
+      
 }
 
 
