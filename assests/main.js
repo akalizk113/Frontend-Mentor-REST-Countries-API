@@ -8,8 +8,12 @@ const dropDownTitle = $('.filter-menu__title');
 const generalContainer = $('.general-container');
 const detailsContainer = $('.detail-container')
 const detailCountry = $('.detail-container .country');
+
+
 const allApi = `https://restcountries.eu/rest/v2/all`;
 const apiUrl = `https://restcountries.eu/rest/v2/`;
+
+let isLoading = false;
 // Function
 const darkmode = () => {
    darkModeBtn.onclick = () => {
@@ -21,6 +25,22 @@ const darkmode = () => {
 function numberWithCommas(x) {
    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
+
+const loading = parentElement => {
+   const loader = parentElement.querySelector('.loader');
+   parentElement.style.position = 'relative';
+   setInterval(() => {
+      if(isLoading) {
+         loader.classList.remove('d-none');
+      }
+      else {
+         loader.classList.add('d-none');
+         parentElement.style.position = 'unset';
+      }
+   })
+}
+
+// render
 
 const render = async api => {
    await fetch(api)
@@ -68,13 +88,12 @@ const renderDetails = async api => {
             $('.border-country').append(newCountry);
          }))
    }
-   
 
+   isLoading = true;
    await fetch(api)
       .then(response => response.json())
       .then(data => {
          const value = data[0];
-         console.log(value);
          detailCountry.innerHTML =  `
             <img src="${value.flag}" alt="" class="country__img">
             <section class="country__info">
@@ -130,6 +149,7 @@ const renderDetails = async api => {
             `
             renderBorders(value.borders)
       })
+   isLoading = false;
       
 }
 
@@ -155,12 +175,12 @@ const handleEvents = () => {
       if (e.target.closest('.country__ensign') || e.target.closest('.country__info')) {
          const country = e.target.closest('.country');
          const countryName = country.querySelector('.country__info .name').innerHTML;
-
-         await renderDetails(`${apiUrl}name/${countryName}/?fullText=true`);
-
          generalContainer.classList.add('d-none');
          detailsContainer.classList.remove('d-none');
          detailsContainer.style.transformOrigin = `${e.offsetX}px ${e.offsetY}px`;
+
+         await renderDetails(`${apiUrl}name/${countryName}/?fullText=true`);
+
 
       }
    }
@@ -182,6 +202,9 @@ const app = () => {
    render(allApi);
 
    handleEvents();
+
+   loading(detailsContainer);
+
 }
 
 app();
