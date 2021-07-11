@@ -31,3 +31,12 @@ $dark-mode-text: rgba(255, 255, 255, 0.8);
       transform: translateY(0);
    }
 }
+
+@keyframes growthUp {
+   from {
+      transform: scale(0.1);
+   }
+   to {
+      transform: scale(1);
+   }
+}

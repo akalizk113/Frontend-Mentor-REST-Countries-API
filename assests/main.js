@@ -5,6 +5,9 @@ const darkModeBtn = $('.btn.dark-mode-btn');
 const rowAllCountries = $('.container-1440 > .row');
 const dropDownItems = $$('.filter-nav__item');
 const dropDownTitle = $('.filter-menu__title');
+const generalContainer = $('.general-container');
+const detailsContainer = $('.detail-container')
+const detailCountry = $('.detail-container .country');
 const allApi = `https://restcountries.eu/rest/v2/all`;
 const apiUrl = `https://restcountries.eu/rest/v2/`;
 // Function
@@ -18,7 +21,6 @@ const darkmode = () => {
 function numberWithCommas(x) {
    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
-
 
 const render = async api => {
    await fetch(api)
@@ -53,6 +55,89 @@ const render = async api => {
       })
 }
 
+const renderDetails = async api => {
+   const getCountryInfo = async api => {
+      return await fetch(api)
+         .then(response => response.json())
+   }
+   const renderBorders = borderCountriesCode => {
+      Promise.all(borderCountriesCode.map( async value => await getCountryInfo(`${apiUrl}alpha/${value}`)))
+         .then(data => data.forEach(value => {
+            const newCountry = document.createElement('span');
+            newCountry.innerHTML = `<button class="btn border-country-btn">France</button>`;
+            $('.border-country').append(newCountry);
+         }))
+   }
+
+   await fetch(api)
+      .then(response => response.json())
+      .then(data => {
+         console.log(data);
+         const htmls = data.map(value => {
+            console.log(renderBorders(value.borders));
+            return `
+            <img src="${value.flag}" alt="" class="country__img">
+            <section class="country__info">
+               <h2 class="country__info-name">${value.name}</h2>
+               <div class="row g-0">
+                  <div class="col-6">
+                     <div class="info-left-content info-content">
+   
+                        <span class="native-name-desc desc">
+                           Native Name: 
+                           <span class="native-name-info info">${value.nativeName}</span>
+                        </span>
+                        <span class="population-desc desc">
+                           Population: 
+                           <span class="population-info info">${numberWithCommas(value.population)}</span>
+                        </span>
+                        <span class="region-desc desc">
+                           Region: 
+                           <span class="region-info info">${value.region}</span>
+                        </span>
+                        <span class="sub-region-desc desc">
+                           Sub Region: 
+                           <span class="sub-region-info info">${value.subregion}</span>
+                        </span>
+                        <span class="capital-desc desc">
+                           Capital: 
+                           <span class="capital-info info">${value.capital}</span>
+                        </span>
+                     </div>
+                  </div>
+                  <div class="col-6">
+                     <div class="info-right-content info-content">
+   
+                        <span class="top-domain-desc desc">
+                           Top Level Domain: 
+                           <span class="top-domain-info info">${value.topLevelDomain.join(', ')}</span>
+                        </span>
+                        <span class="currencies-desc desc">
+                           Currencies: 
+                           <span class="currencies-info info">${value.currencies.map(currencie => currencie.name).join(', ')}</span>
+                        </span>
+                        <span class="languages-desc desc">
+                           Languages: 
+                           <span class="languages-info info">${value.languages.map(language => language.name).join(', ')}</span>
+                        </span>
+                     </div>
+                  </div>
+               </div>
+               <div class="border-country">
+                  <span class="border-country-desc">Border Countries: </span>
+               </div>
+            </section>
+            `
+         })
+         return htmls.join('');
+      })
+      .then(html => {
+         detailCountry.innerHTML = html;
+      })
+}
+
+
+
 const handleEvents = () => {
    // Drop down menu onclick
    dropDownItems.forEach(item => {
@@ -67,6 +152,27 @@ const handleEvents = () => {
          render(`${apiUrl}region/${region}`);
       }
    })
+
+   // countries onclick
+   rowAllCountries.onclick = async e => {
+      if (e.target.closest('.country__ensign') || e.target.closest('.country__info')) {
+         const country = e.target.closest('.country');
+         const countryName = country.querySelector('.country__info .name').innerHTML;
+
+         await renderDetails(`${apiUrl}name/${countryName}/?fullText=true`);
+
+         generalContainer.classList.add('d-none');
+         detailsContainer.classList.remove('d-none');
+         detailsContainer.style.transformOrigin = `${e.offsetX}px ${e.offsetY}px`;
+
+      }
+   }
+
+   $('.back-btn').onclick = () => {
+      generalContainer.classList.remove('d-none');
+      detailsContainer.classList.add('d-none');
+   }
+
 }
 
 
@@ -89,5 +195,3 @@ app();
 //    .then(data => {
 //       console.log(data);
 //    })
-
-

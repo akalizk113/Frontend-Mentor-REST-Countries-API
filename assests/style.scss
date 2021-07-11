@@ -219,6 +219,7 @@ body {
          .country {
             padding: 0 38px;
             margin-bottom: 76px;
+            
 
             &__ensign {
                width: 264px;
@@ -226,6 +227,9 @@ body {
                border-top-left-radius: 6px;
                border-top-right-radius: 6px;
                object-fit: cover;
+               &:hover {
+                  cursor: pointer;
+               }
             }
 
             &__info {
@@ -241,6 +245,9 @@ body {
                font-weight: 600;
                font-size: 14px;
                transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+               &:hover {
+                  cursor: pointer;
+               }
                .name {
                   font-size: 20px;
                   font-weight: 700;
@@ -261,6 +268,7 @@ body {
 .detail-container {
    padding:  80px;
    background-color: #fff;
+   animation: fadeIn 0.5s, growthUp 0.5s;
    
    // display: none;
    .btn.back-btn {
