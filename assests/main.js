@@ -14,6 +14,7 @@ const allApi = `https://restcountries.eu/rest/v2/all`;
 const apiUrl = `https://restcountries.eu/rest/v2/`;
 
 let hpCountries = [];
+let detailCountries = [];
 
 let isLoading = false;
 // Function
@@ -200,8 +201,15 @@ const displayCountryDetails = async countries => {
       `
    await renderBorders()
 
+}
 
-
+// Search
+const searchHandle = () => {
+   const searchInput = $('#search-input');
+   searchInput.oninput = e => {
+      const filtedCountries = hpCountries.filter(country => country.name.toLowerCase().includes(`${searchInput.value.toLowerCase()}`))
+      displayCountries(filtedCountries);
+   }
 }
 
 
@@ -212,6 +220,8 @@ const app = () => {
    darkmode();
 
    loadCountries(allApi, displayCountries);
+
+   searchHandle();
 
    handleEvents();
 
