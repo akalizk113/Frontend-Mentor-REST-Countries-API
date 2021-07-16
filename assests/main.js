@@ -68,7 +68,7 @@ const handleEvents = () => {
          detailsContainer.classList.remove('d-none');
          detailsContainer.style.transformOrigin = `${e.offsetX}px ${e.offsetY}px`;
 
-         await loadCountries(`${apiUrl}name/${countryName}/?fullText=true`, displayCountryDetails);
+         await loadDetailsCountry(`${apiUrl}name/${countryName}/?fullText=true`, displayCountryDetails);
 
 
       }
@@ -88,6 +88,20 @@ const loadCountries = async (api, callback) => {
       hpCountries = await res.json();
       if(typeof callback === 'function') {
          callback(hpCountries);
+      }
+      isLoading = false;
+   } catch (err) {
+      console.log(err);
+   }
+}
+
+const loadDetailsCountry = async (api, callback) => {
+   try {
+      isLoading = true;
+      const res = await fetch(api);
+      detailCountries = await res.json();
+      if(typeof callback === 'function') {
+         callback(detailCountries);
       }
       isLoading = false;
    } catch (err) {
@@ -129,7 +143,7 @@ const displayCountryDetails = async countries => {
    const country = countries[0];
    const getCountryName = async borderCountryCode => {
       let borderCountryName;
-      await loadCountries(`${apiUrl}alpha/${borderCountryCode}`, data => {
+      await loadDetailsCountry(`${apiUrl}alpha/${borderCountryCode}`, data => {
          borderCountryName = data.name;
       })
       return borderCountryName;
@@ -139,7 +153,7 @@ const displayCountryDetails = async countries => {
          const newElement = document.createElement('span');
          const borderCountryName = await getCountryName(borderCountryCode);
          newElement.innerHTML = 
-            `<button onclick="loadCountries(\`${apiUrl}name/${borderCountryName}/?fullText=true\`, displayCountryDetails)" class="btn border-country-btn">
+            `<button onclick="loadDetailsCountry(\`${apiUrl}name/${borderCountryName}/?fullText=true\`, displayCountryDetails)" class="btn border-country-btn">
                ${borderCountryName}
             </button>`;
          $('.border-country').append(newElement);
